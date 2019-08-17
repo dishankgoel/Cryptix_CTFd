@@ -1,0 +1,14 @@
+html{
+    min-height: 100%;
+
+}
+
+body{
+    background-image: linear-gradient(to bottom right, rgb(0, 0, 0), rgb(44, 39, 37));
+}
+
+.enter{
+    color: rgb(34, 248, 6);
+    font-family: 'Source Code Pro';
+    font-size: 4vh;
+}

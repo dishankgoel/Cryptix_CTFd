@@ -1,0 +1,90 @@
+version: '2'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-server-80
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=.sweetpwd.
+      - MYSQL_DATABASE=my_db
+      - MYSQL_USER=db_user
+      - MYSQL_PASSWORD=.mypwd
+    ports:
+      - "8086:3306"
+
+#   web1:
+#     container_name: web1
+#     image: web1:php_img
+#     build:
+#       context: ./web1/
+#     ports:
+#       - "1000:1000"
+
+#   web2:
+#     container_name: web2
+#     image: web2:php_img
+#     build:
+#       context: ./web2/
+#     ports:
+#       - "2000:2000"
+    
+#   web3:
+#     container_name: web3
+#     image: web3:php_img
+#     build:
+#       context: ./web3/
+#     ports:
+#       - "3000:3000"
+    
+#   web4:
+#     container_name: web4
+#     image: web4:php_img
+#     build:
+#       context: ./web4/
+#     ports:
+#       - "4000:4000"
+
+# version: "3.2"
+# services:
+#   php:
+#     build: './php/'
+#     networks:
+#       - backend
+#     volumes:
+#       - ./web1/src/:/var/www/web1/
+#   apache:
+#     build: './apache/'
+#     depends_on:
+#       - php
+#       - mysql
+#     networks:
+#       - frontend
+#       - backend
+#     ports:
+#       - "8081:80"
+#     volumes:
+#       - ./web1/src/:/var/www/web1/
+#   mysql:
+#     image: mysql:8.0
+#     container_name: mysql-server-80
+#     command: --default-authentication-plugin=mysql_native_password
+#     restart: always
+#     volumes:
+#       - data:/var/lib/mysql
+#     networks:
+#       - backend
+#     environment:
+#       - MYSQL_ROOT_PASSWORD=.sweetpwd.
+#       - MYSQL_DATABASE=my_db
+#       - MYSQL_USER=db_user
+#       - MYSQL_PASSWORD=.mypwd
+#     ports:
+#       - "8086:3306"
+# networks:
+#   frontend:
+#   backend:
+# volumes:
+#     data:
+

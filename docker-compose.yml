@@ -47,8 +47,132 @@ services:
     - .data/redis:/data
     networks:
         internal:
+  
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-server-80
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=.sweetpwd.
+      - MYSQL_DATABASE=my_db
+      - MYSQL_USER=db_user
+      - MYSQL_PASSWORD=.mypwd
+    networks:
+      - web_challenges
+    ports:
+      - "8086:3306"
+  
+  web1_php:
+    build:
+      context: ./web1/docker/php
+    image: "web_chall/web1_php:web1"
+    container_name: "web1_php"
+    hostname: "web1-php"
+    volumes:
+      - ./web1:/app:cached
+      - ./web1/docker/php/www.conf:/usr/local/etc/php-fpm.d/www.conf:cached
+    working_dir: /app
+  
+  web1_nginx:
+    build:
+      context: ./web1/docker/nginx
+    image: "web_chall/web1_nginx:web1"
+    container_name: "web1_nginx"
+    hostname: "web1-nginx"
+    ports:
+      - "8081:80"
+    volumes:
+      - ./web1:/app:cached
+      - ./web1/docker/nginx/app.conf:/etc/nginx/conf.d/default.conf:cached
+    depends_on:
+      - web1_php
+  
+  web2_php:
+    build:
+      context: ./web2/docker/php
+    image: "web_chall/web2_php:web2"
+    container_name: "web2_php"
+    hostname: "web2-php"
+    networks:
+      - web_challenges
+    volumes:
+      - ./web2:/app:cached
+      - ./web2/docker/php/www.conf:/usr/local/etc/php-fpm.d/www.conf:cached
+    working_dir: /app
+  
+  web2_nginx:
+    build:
+      context: ./web2/docker/nginx
+    image: "web_chall/web2_nginx:web2"
+    container_name: "web2_nginx"
+    hostname: "web2-nginx"
+    networks:
+      - web_challenges
+    ports:
+      - "8082:80"
+    volumes:
+      - ./web2:/app:cached
+      - ./web2/docker/nginx/app.conf:/etc/nginx/conf.d/default.conf:cached
+    depends_on:
+      - web2_php
+  
+  web3_php:
+    build:
+      context: ./web3/docker/php
+    image: "web_chall/web3_php:web3"
+    container_name: "web3_php"
+    hostname: "web3-php"
+    networks:
+      - web_challenges
+    volumes:
+      - ./web3:/app:cached
+      - ./web3/docker/php/www.conf:/usr/local/etc/php-fpm.d/www.conf:cached
+    working_dir: /app
+  
+  web3_nginx:
+    build:
+      context: ./web3/docker/nginx
+    image: "web_chall/web3_nginx:web3"
+    container_name: "web3_nginx"
+    hostname: "web3-nginx"
+    networks:
+      - web_challenges
+    ports:
+      - "8083:80"
+    volumes:
+      - ./web3:/app:cached
+      - ./web3/docker/nginx/app.conf:/etc/nginx/conf.d/default.conf:cached
+    depends_on:
+      - web3_php
+  
+  web4_php:
+    build:
+      context: ./web4/docker/php
+    image: "web_chall/web4_php:web4"
+    container_name: "web4_php"
+    hostname: "web4-php"
+    volumes:
+      - ./web4:/app:cached
+      - ./web4/docker/php/www.conf:/usr/local/etc/php-fpm.d/www.conf:cached
+    working_dir: /app
+  
+  web4_nginx:
+    build:
+      context: ./web4/docker/nginx
+    image: "web_chall/web4_nginx:web4"
+    container_name: "web4_nginx"
+    hostname: "web4-nginx"
+    ports:
+      - "8084:80"
+    volumes:
+      - ./web4:/app:cached
+      - ./web4/docker/nginx/app.conf:/etc/nginx/conf.d/default.conf:cached
+    depends_on:
+      - web4_php
 
 networks:
-    default:
-    internal:
-        internal: true
+  default:
+  internal:
+      internal: true
+  web_challenges:

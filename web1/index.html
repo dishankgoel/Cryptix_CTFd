@@ -1,0 +1,74 @@
+<html lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <head>
+        <title>Greetings</title>
+    </head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro">
+    <link rel="stylesheet" href="style.css">
+    <body>
+        <div class="logos container">
+            <div class="row">
+                <div class="aml_logo col pt-3">
+                    <img src="images/aml_logo.png" class="img-fluid"> <!--height="25%" width="40%"> -->
+                </div>
+                <div class="cryptix_logo col-5 pt-5">
+                    <img src="images/CryptixLight.png" class="img-fluid"> <!-- height="20%" width="80%" /> -->
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row text-center">
+                <div class="col">
+                    <h1 class="greet pt-4 font-weight-bold" id="greet"></h1>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row text-center pt-4">
+                <p id="message1" class="message1"></p>
+            </div>
+            <div class="row text-center pt-2">
+                <p id="message2" class="message2"></p>
+            </div>
+        </div>
+        <div class="container pt-2">
+            <div class="row justify-content-center icons" id="icons">
+                
+            </div>
+        </div>
+        <!-- Came for the flag? Bingo!
+              first part: flag{Pr3tty_ 
+        -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+    <script src="script.js"></script>
+    <script>
+        confetti.start(3000);
+        var options3 = {
+            strings: ["^200Meanwhile,^200 if you haven't checked out Amalthea,^200 The Annual Technical Summit of IIT Gandhinagar,^200 do have a look."],
+            typeSpeed: 30,
+            showCursor: false,
+            onComplete: function(self){ document.getElementById("icons").innerHTML = '<a class="a1 pr-4 pt-2" href="https://www.facebook.com/amalthea.iitgn/" target="_blank"><i class="fa fa-facebook-square fa-3x"></i></a><a class="a2 pr-3 pt-2" href="https://www.instagram.com/amalthea_iitgn/" target="_blank"><i class="fa fa-instagram fa-3x"></i></a><a class="a3" href="http://amalthea.iitgn.ac.in/" target="_blank"><img src="images/aml_single.png" width="60px" height="60px"></a>';}
+        }
+        var options2 = {
+            strings: ["I take this opportunity to Thank you for participating in CryptixCTF.^500 I hope this contest will teach you something New and Exciting!"],
+            typeSpeed: 30,
+            showCursor: false,
+            onComplete: function(self){ var typed3 = new Typed(".message2", options3);},
+
+        }
+        var options1 = {
+            strings: ["Greetings,^200 participant"],
+            typeSpeed: 50,
+            startDelay: 3000,
+            showCursor: false,
+            onComplete: function(self){ var typed2 = new Typed(".message1", options2);},
+        }
+        var typed1 = new Typed(".greet", options1);
+    </script>
+
+
+    </body>
+</html>

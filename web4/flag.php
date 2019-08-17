@@ -1,0 +1,4 @@
+<?php
+$secretpassphrase = '2222381AEA6A23E4B3BA3E7EF96B318B01F7A9D569D06E7A69D7D7EBBBFCFDCC';
+$flag = 'flag{Why_Juggl3_th3_Typ5}';
+?>
