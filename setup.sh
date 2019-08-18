@@ -7,6 +7,5 @@ sudo apt update
 apt-cache policy docker-ce
 sudo apt install docker-ce
 sudo usermod -aG docker ${USER}
-su - ${USER}
 sudo apt install nginx
 sudo ufw allow 'Nginx Full'
