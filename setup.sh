@@ -9,3 +9,4 @@ sudo apt install docker-ce
 sudo usermod -aG docker ${USER}
 sudo apt install nginx
 sudo ufw allow 'Nginx Full'
+sudo apt install docker-compose
